@@ -51,10 +51,36 @@ export const fillData = (actions, dataFormat, id, verbs, nbOfUsers) => {
     // if the action is done by this user in the date range chosen: Increment the type of verb that he had done
     if (userId === id && verb && correspondingObject) {
       correspondingObject[verb] += 1;
+      correspondingObject[`${verb}Avg`] += 1;
     }
     if (verb && correspondingObject) {
       correspondingObject[`${verb}Avg`] += 1;
     }
   });
+
   return calculateAvg(verbs, data, nbOfUsers);
+};
+
+export const AddSelectedAction = (Obj, properties) => {
+  const newObj = {};
+  newObj.date = Obj.date;
+  Object.keys(Obj).forEach(key => {
+    if (properties.indexOf(key) !== -1) {
+      newObj[key] = Obj[key];
+      newObj[`${key}Avg`] = Obj[`${key}Avg`];
+    }
+  });
+
+  return newObj;
+};
+
+export const displayTheSelectedData = (data, properties) => {
+  const newArr = [];
+
+  data.forEach(e => {
+    const Obj = AddSelectedAction(e, properties);
+    newArr.push(Obj);
+  });
+
+  return newArr;
 };

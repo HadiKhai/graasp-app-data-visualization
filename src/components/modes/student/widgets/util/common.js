@@ -1,10 +1,10 @@
 import moment from 'moment';
 
-import getDateById from '../../../../../reducers/chartDateById';
+import getDateById from '../../../../../reducers/chartDataById';
 
-export const fromDate = (chartDateById, id) => {
-  if (chartDateById) {
-    const Obj = getDateById(chartDateById, id)[id];
+export const fromDate = (chartDataById, id) => {
+  if (chartDataById) {
+    const Obj = getDateById(chartDataById, id)[id];
     if (Obj) {
       return Obj.from;
     }
@@ -12,14 +12,24 @@ export const fromDate = (chartDateById, id) => {
   return undefined;
 };
 
-export const toDate = (chartDateById, id) => {
-  if (chartDateById) {
-    const Obj = getDateById(chartDateById, id)[id];
+export const toDate = (chartDataById, id) => {
+  if (chartDataById) {
+    const Obj = getDateById(chartDataById, id)[id];
     if (Obj) {
       return Obj.to;
     }
   }
   return undefined;
+};
+
+export const selectedActions = (chartDataById, id) => {
+  if (chartDataById) {
+    const Obj = getDateById(chartDataById, id)[id];
+    if (Obj) {
+      return Obj.payload;
+    }
+  }
+  return [];
 };
 
 export const buildDateRange = (from, to) => {
@@ -46,7 +56,20 @@ export const Occurrence = (actions, attribute) => {
     }
   });
   data.sort();
+
   return data;
+};
+
+export const filterVerbs = (verbList, list) => {
+  let filteredList = [];
+  verbList.forEach(verb => {
+    if (list.indexOf(verb) === -1) {
+      filteredList = [...filteredList, verb];
+      console.log(filteredList);
+    }
+  });
+
+  return filteredList;
 };
 
 export const RemovePropertyOfObject = (Obj, property) => {
@@ -96,6 +119,7 @@ export const RemoveObjectWithAttributeFromArray = (
       newArr.push(e);
     }
   });
+
   return newArr;
 };
 

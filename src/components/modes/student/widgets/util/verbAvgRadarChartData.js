@@ -1,4 +1,6 @@
 /* eslint-disable no-param-reassign */
+// eslint-disable-next-line import/no-cycle
+import { USER, AVG } from './index';
 
 export const formatDataForRadar = (key, attribute, properties = []) => {
   const data = [];
@@ -23,7 +25,7 @@ const isActionInRange = (dateRange, createdAt) => {
 
 function calculateAverage(dataFormat, nbOfUsers) {
   dataFormat.forEach(verbs => {
-    verbs.avg /= nbOfUsers;
+    verbs[AVG] /= nbOfUsers;
   });
   return dataFormat;
 }
@@ -41,11 +43,11 @@ export const fillDataForRadar = (
     const verbObj = dataFormat.find(obj => obj.verb === verb);
 
     if (userId === id && verb && correspondingObject) {
-      verbObj.user += 1;
-      verbObj.avg += 1;
+      verbObj[USER] += 1;
+      verbObj[AVG] += 1;
     }
     if (verb && correspondingObject) {
-      verbObj.avg += 1;
+      verbObj[AVG] += 1;
     }
   });
 

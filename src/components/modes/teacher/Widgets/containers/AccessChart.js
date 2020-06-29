@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import getDateById from '../../../../../reducers/chartDateById';
+import getDateById from '../../../../../reducers/chartDataById';
 
 import LineChart from '../components/LineChart';
 import {

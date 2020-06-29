@@ -12,7 +12,7 @@ import {
   USER,
   USER_ID,
   VERB,
-  VERB_RADAR_WIDGET_ID,
+  VERB_RADAR_DATE_PICKER_ID,
 } from '../util';
 
 const chartProperties = [USER, AVG];
@@ -33,6 +33,8 @@ const RadarData = (actions, userId, from, to) => {
     'logout',
     'login',
     'unload',
+    'access',
+    'cancel',
   ]);
   return data;
 };
@@ -40,13 +42,13 @@ const RadarData = (actions, userId, from, to) => {
 const mapStateToProps = ({
   action: { content },
   context: { userId },
-  chartDateById,
+  chartDataById,
 }) => ({
   data: RadarData(
     content,
     userId,
-    fromDate(chartDateById, VERB_RADAR_WIDGET_ID),
-    toDate(chartDateById, VERB_RADAR_WIDGET_ID),
+    fromDate(chartDataById, VERB_RADAR_DATE_PICKER_ID),
+    toDate(chartDataById, VERB_RADAR_DATE_PICKER_ID),
   ),
   keys: chartProperties,
   indexBy: VERB,
