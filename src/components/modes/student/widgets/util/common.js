@@ -1,12 +1,11 @@
 import moment from 'moment';
-
-import getDateById from '../../../../../reducers/chartDataById';
+import getComponentById from '../../../../../reducers/chartDataById';
 
 export const fromDate = (chartDataById, id) => {
   if (chartDataById) {
-    const Obj = getDateById(chartDataById, id)[id];
-    if (Obj) {
-      return Obj.from;
+    const componentByIdElement = getComponentById(chartDataById, id)[id];
+    if (componentByIdElement) {
+      return componentByIdElement.from;
     }
   }
   return undefined;
@@ -14,9 +13,9 @@ export const fromDate = (chartDataById, id) => {
 
 export const toDate = (chartDataById, id) => {
   if (chartDataById) {
-    const Obj = getDateById(chartDataById, id)[id];
-    if (Obj) {
-      return Obj.to;
+    const componentByIdElement = getComponentById(chartDataById, id)[id];
+    if (componentByIdElement) {
+      return componentByIdElement.to;
     }
   }
   return undefined;
@@ -24,9 +23,9 @@ export const toDate = (chartDataById, id) => {
 
 export const selectedActions = (chartDataById, id) => {
   if (chartDataById) {
-    const Obj = getDateById(chartDataById, id)[id];
-    if (Obj) {
-      return Obj.payload;
+    const componentByIdElement = getComponentById(chartDataById, id)[id];
+    if (componentByIdElement) {
+      return componentByIdElement.payload;
     }
   }
   return [];
@@ -65,7 +64,6 @@ export const filterVerbs = (verbList, list) => {
   verbList.forEach(verb => {
     if (list.indexOf(verb) === -1) {
       filteredList = [...filteredList, verb];
-      console.log(filteredList);
     }
   });
 
@@ -127,13 +125,13 @@ export const changeDateFormat = date => {
   return moment(date).format('D/M');
 };
 
-export const changeDateFormatForBarChart = arr => {
-  const newArr = [...arr];
+export const changeDateFormatForBarChart = dataArray => {
+  const updatedDataArray = [...dataArray];
 
-  newArr.forEach(e => {
+  updatedDataArray.forEach(e => {
     const { date } = e;
 
     e.date = changeDateFormat(date);
   });
-  return newArr;
+  return updatedDataArray;
 };

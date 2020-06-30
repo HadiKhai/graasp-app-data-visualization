@@ -11,33 +11,25 @@ import {
   displayTheSelectedData,
   Occurrence,
   toDate,
+} from '../util';
+import {
   DATE,
   USER_ID,
   VERB_BAR_DATE_PICKER_ID,
   VERB_BAR_LEGEND_ID,
-} from '../util';
+} from '../types/types';
 
 const xAxis = 'date';
 const yAxis = 'Occurrence';
 const colors = {
   change: '#F5B7B1',
   changeAvg: '#F5B7B1',
-  access: '#7878fa',
-  accessAvg: '#7878fa',
   open: '#8E44AD',
   openAvg: '#8E44AD',
-  login: '#3f3cbe',
-  loginAvg: '#3f3cbe',
   navigate: '#bb93dd',
   navigateAvg: '#bb93dd',
   create: '#fe9788',
   createAvg: '#fe9788',
-  unload: '#8082a5',
-  unloadAvg: '#8082a5',
-  cancel: '#8082a5',
-  cancelAvg: '#8082a5',
-  logout: '#5050d2',
-  logoutAvg: '#5050d2',
 };
 
 const BarData = (actions, userId, from, to, selectedActionsList) => {
@@ -55,7 +47,6 @@ const BarData = (actions, userId, from, to, selectedActionsList) => {
   );
   data = changeDateFormatForBarChart(data);
   data = displayTheSelectedData(data, selectedActionsList);
-
   return data;
 };
 

@@ -57,30 +57,32 @@ export const fillData = (actions, dataFormat, id, verbs, nbOfUsers) => {
       correspondingObject[`${verb}Avg`] += 1;
     }
   });
-
   return calculateAvg(verbs, data, nbOfUsers);
 };
 
-export const AddSelectedAction = (Obj, properties) => {
-  const newObj = {};
-  newObj.date = Obj.date;
-  Object.keys(Obj).forEach(key => {
-    if (properties.indexOf(key) !== -1) {
-      newObj[key] = Obj[key];
-      newObj[`${key}Avg`] = Obj[`${key}Avg`];
-    }
-  });
-
-  return newObj;
+const isKeyInDataSelected = (dataSelected, key) => {
+  return dataSelected.indexOf(key) !== -1;
 };
 
-export const displayTheSelectedData = (data, properties) => {
-  const newArr = [];
+export const AddSelectedAction = (dataObject, dataSelected) => {
+  const updatedDataObject = {};
+  updatedDataObject.date = dataObject.date;
 
-  data.forEach(e => {
-    const Obj = AddSelectedAction(e, properties);
-    newArr.push(Obj);
+  Object.keys(dataObject).forEach(key => {
+    if (isKeyInDataSelected(dataSelected, key)) {
+      updatedDataObject[key] = dataObject[key];
+      updatedDataObject[`${key}Avg`] = dataObject[`${key}Avg`];
+    }
   });
+  return updatedDataObject;
+};
 
-  return newArr;
+export const displayTheSelectedData = (data, dataSelected) => {
+  const updatedDataArray = [];
+
+  data.forEach(entry => {
+    const Obj = AddSelectedAction(entry, dataSelected);
+    updatedDataArray.push(Obj);
+  });
+  return updatedDataArray;
 };

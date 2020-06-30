@@ -4,4 +4,4 @@ import chartData from './chartData';
 const chartDataById = makeMultiReducer(chartData);
 export default chartDataById;
 
-export const getDateById = makeMultiGetter(chartData);
+export const getComponentById = makeMultiGetter(chartData);

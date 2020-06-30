@@ -6,19 +6,15 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import PropTypes from 'prop-types';
 import Loader from './Loader';
-import { Occurrence, filterVerbs, VERB } from '../modes/student/widgets/util';
-import { updateLegendById } from '../../actions/chartLegendById';
+import { Occurrence, filterVerbs } from '../modes/student/widgets/util';
+import { VERB } from '../modes/student/widgets/types/types';
+import updateLegendById from '../../actions/chartLegendById';
 
+const filteredVerbs = ['access', 'cancel', 'login', 'logout', 'unload'];
 const Legend = ({ id }) => {
   const actions = useSelector(state => state.action.content);
   let verbList = Occurrence(actions, VERB);
-  verbList = filterVerbs(verbList, [
-    'access',
-    'cancel',
-    'login',
-    'logout',
-    'unload',
-  ]);
+  verbList = filterVerbs(verbList, filteredVerbs);
   const [action, setAction] = useState([]);
   const dispatch = useDispatch();
 

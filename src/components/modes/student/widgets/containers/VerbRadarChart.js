@@ -2,6 +2,12 @@ import { connect } from 'react-redux';
 import RadarChart from '../components/RadarChart';
 import {
   AVG,
+  USER,
+  USER_ID,
+  VERB,
+  VERB_RADAR_DATE_PICKER_ID,
+} from '../types/types';
+import {
   buildDateRange,
   fillDataForRadar,
   formatDataForRadar,
@@ -9,13 +15,10 @@ import {
   Occurrence,
   RemoveObjectWithAttributeFromArray,
   toDate,
-  USER,
-  USER_ID,
-  VERB,
-  VERB_RADAR_DATE_PICKER_ID,
 } from '../util';
 
 const chartProperties = [USER, AVG];
+const filteredVerbs = ['logout', 'login', 'unload', 'access', 'cancel'];
 const RadarData = (actions, userId, from, to) => {
   const dateRange = buildDateRange(from, to);
   const verbList = Occurrence(actions, VERB);
@@ -28,14 +31,7 @@ const RadarData = (actions, userId, from, to) => {
     dateRange,
     userList.length,
   );
-
-  data = RemoveObjectWithAttributeFromArray(data, VERB, [
-    'logout',
-    'login',
-    'unload',
-    'access',
-    'cancel',
-  ]);
+  data = RemoveObjectWithAttributeFromArray(data, VERB, filteredVerbs);
   return data;
 };
 

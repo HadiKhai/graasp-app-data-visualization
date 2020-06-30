@@ -2,7 +2,7 @@ import React from 'react';
 import VerbAvgChart from './containers/VerbAvgChart';
 import KeyedDatePicker from '../../../common/KeyedDatePicker';
 import Legend from '../../../common/Legend';
-import { VERB_BAR_DATE_PICKER_ID, VERB_BAR_LEGEND_ID } from './util';
+import { VERB_BAR_DATE_PICKER_ID, VERB_BAR_LEGEND_ID } from './types/types';
 
 const VerbAvgWidget = () => {
   const initialState = {

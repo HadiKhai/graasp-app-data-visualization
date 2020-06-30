@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { UPDATE_CHART_LEGEND_BY_ID } from '../types';
 
 const updateLegendById = (payload = [], id) => dispatch =>
@@ -8,4 +7,4 @@ const updateLegendById = (payload = [], id) => dispatch =>
     key: id,
   });
 
-export { updateLegendById };
+export default updateLegendById;
