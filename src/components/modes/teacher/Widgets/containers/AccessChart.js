@@ -63,9 +63,9 @@ const colors = {
 const getColor = bar => colors[bar.id];
 
 const from = state => {
-  const { chartDateById } = state;
-  if (chartDateById) {
-    const Obj = getDateById(chartDateById, id)[id];
+  const { chartDataById } = state;
+  if (chartDataById) {
+    const Obj = getDateById(chartDataById, id)[id];
     if (Obj) {
       return Obj.from;
     }
@@ -74,9 +74,9 @@ const from = state => {
 };
 
 const to = state => {
-  const { chartDateById } = state;
-  if (chartDateById) {
-    const Obj = getDateById(chartDateById, id)[id];
+  const { chartDataById } = state;
+  if (chartDataById) {
+    const Obj = getDateById(chartDataById, id)[id];
     if (Obj) {
       return Obj.to;
     }
