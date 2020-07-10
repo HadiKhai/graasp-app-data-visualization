@@ -14,15 +14,12 @@ const chartProperties = [USER, AVG];
 
 const allowedVerbs = ['create', 'change', 'open', 'navigate'];
 const colors = {};
-
 colors[USER] = '#decaff';
 colors[AVG] = '#BBAAFF';
-
 const RadarData = (actions, userId, from, to) => {
   const dateRange = buildDateRange(from, to);
   const formattedData = formatDataForRadar(allowedVerbs, VERB, chartProperties);
   const userList = Occurrence(actions, USER_ID);
-
   return fillDataForRadar(
     actions,
     formattedData,

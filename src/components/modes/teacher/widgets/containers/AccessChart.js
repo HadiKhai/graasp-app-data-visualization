@@ -32,7 +32,6 @@ const colors = {
 
 const AccessData = (actions, from, to) => {
   let data = [];
-
   if (actions.length > 0) {
     const date = fillTheDates(from, to);
     let accesses = DataPicking(
